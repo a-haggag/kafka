@@ -1,0 +1,38 @@
+## Steps to use Kafka connect
+## we will use kafka connect as a sink to 
+        1. simple file.
+        2. HDFS.
+        3. Postgresql database using Avro connect.
+
+# General steps:
+    1. download the plugin you want so if you need to use HDFS sink connector go and download it and put it in /confluent/share/java/kafka/ and unzip it.
+
+    2. choose and configure the type of the main connector:
+            a. connect-standalone.properties            --- etc/kafka/connect-standalone.properties
+            b. connect-distributed.properties           --- etc/kafka/connect-distributed.properties
+            c. connect-avro-standalone.properties       --- etc/schema-registry/connector-avro-standalone.properties
+            d. connect-avro-distributed.properties      --- etc/schema-registry/connector-avro-distributed.properties
+
+    3. choose and configure the specific connector you want to use:
+        you can create any configuration file as you want.
+            a. connect-file-sink.properties
+            b. connect-hadoop-sink.properties
+            c. connect-postgresql-sink.properties
+
+    4. run the command to start the connector using the configurations you made:
+        a. bin/connect-standalone etc/kafka/connect-standalone.properties etc/kafka/connect-hadoop-sink.properties
+        b. bin/connect-standalone etc/schema-registry/connect-avro-standalone.properties etc/kafka/connect-postgresql-sink.properties
+
+# Notes:
+    -- if you are not providing a schema for the producer to the topic which you want to connect to you should change the configurations to:
+        in connect-standalone.properties:
+            key.converter.schemas.enable=false
+            value.converter.schemas.enable=false
+
+    -- for the postgresql connector you have to use avro producer with a schema to provide to the database you want to connect to.
+    -- avro producer notes:
+        a good repo example that worked for me: https://github.com/skyrocknroll/python-kafka-avro-example
+
+    -- JDBC Sink connector: https://docs.confluent.io/3.1.1/connect/connect-jdbc/docs/sink_connector.html
+
+    

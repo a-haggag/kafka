@@ -1,0 +1,8 @@
+name=test-postgresql-sink-1
+connector.class=io.confluent.connect.jdbc.JdbcSinkConnector
+tasks.max=1
+topics=test-postgresql-sink-1
+connection.url=jdbc:postgresql://192.168.1.55:5432/test_kafka_connect
+connection.user=abdullah
+connection.password=data
+auto.create=true

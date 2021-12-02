@@ -1,0 +1,9 @@
+{     
+    "type": "record",
+    "name": "test_avro_producer",
+    "fields": [
+    { "name": "time", "type": ["string", "null"] },
+    { "name": "sensor_1", "type": ["int", "null"] },
+    { "name": "sensor_2", "type": ["int", "null"] }
+    ]
+}
